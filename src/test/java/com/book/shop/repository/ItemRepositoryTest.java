@@ -11,8 +11,6 @@ import org.springframework.test.context.TestPropertySource;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * author : ms.Lee
  * date   : 2024-04-01
@@ -111,8 +109,38 @@ class ItemRepositoryTest {
 
     this.createTimeList();
 
-    List<Item> items = 
+    List<Item> items =
         itemRepository.findByPriceLessThanOrderByPriceDesc(10005);
+
+    for (Item item : items) {
+
+      System.out.println(item.toString());
+    }
+  }
+
+  @Test
+  @DisplayName("@Query를 이용한 상품 조회 테스트")
+  public void findByDetailTest() {
+
+    this.createTimeList();
+
+    List<Item> items =
+        itemRepository.findByItemDetail("테스트 상품 상세 설명");
+
+    for (Item item : items) {
+
+      System.out.println(item.toString());
+    }
+  }
+
+  @Test
+  @DisplayName("nativeQuery 속성을 이용한 상품 조회 테스트")
+  public void findByItemDetailNativeTest() {
+
+    this.createTimeList();
+
+    List<Item> items = 
+        itemRepository.findByItemDetailNative("테스트 상품 상세 설명");
 
     for (Item item : items) {
 
