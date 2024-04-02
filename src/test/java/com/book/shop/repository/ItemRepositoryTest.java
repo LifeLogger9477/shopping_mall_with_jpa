@@ -2,6 +2,11 @@ package com.book.shop.repository;
 
 import com.book.shop.constant.ItemSellStatus;
 import com.book.shop.entity.Item;
+import com.book.shop.entity.QItem;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,9 @@ class ItemRepositoryTest {
 
   @Autowired
   ItemRepository itemRepository;
+  
+  @PersistenceContext
+  EntityManager em;
 
   @Test
   @DisplayName("상품 저장 테스트")
@@ -141,6 +149,29 @@ class ItemRepositoryTest {
 
     List<Item> items = 
         itemRepository.findByItemDetailNative("테스트 상품 상세 설명");
+
+    for (Item item : items) {
+
+      System.out.println(item.toString());
+    }
+  }
+  
+  @Test
+  @DisplayName("QueryDSL 조회테스트 1")
+  public void queryDslTest() {
+    
+    this.createTimeList();
+
+    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
+    QItem qItem = QItem.item;
+    JPAQuery<Item> query =
+        queryFactory.selectFrom(qItem)
+            .where(qItem.itemSellStatus.eq(ItemSellStatus.SELL))
+            .where(qItem.itemDetail.like("%" + "테스트 상품 상세 설명" + "%"))
+            .orderBy(qItem.price.desc());
+
+    List<Item> items = query.fetch();
 
     for (Item item : items) {
 
