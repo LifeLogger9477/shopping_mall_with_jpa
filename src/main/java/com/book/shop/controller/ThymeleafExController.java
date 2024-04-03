@@ -43,9 +43,7 @@ public class ThymeleafExController {
     return "thymeleafEx/thymeleafEx02";
   }
 
-  @GetMapping(value = "/ex03")
-  public String thymeleafExample03(Model model) {
-
+  private List<ItemDto> getItemDtos() {
     List<ItemDto> itemDtos = new ArrayList<>();
 
     for (int i = 1; i <= 10; i++) {
@@ -58,9 +56,26 @@ public class ThymeleafExController {
 
       itemDtos.add(itemDto);
     }
+    return itemDtos;
+  }
+  
+  @GetMapping(value = "/ex03")
+  public String thymeleafExample03(Model model) {
+
+    List<ItemDto> itemDtos = getItemDtos();
 
     model.addAttribute("itemDtos", itemDtos);
 
     return "/thymeleafEx/thymeleafEx03";
+  }
+
+  @GetMapping(value = "/ex04")
+  public String thyemleafExample04(Model model) {
+
+    List<ItemDto> itemDtos = getItemDtos();
+
+    model.addAttribute("itemDtos", itemDtos);
+
+    return "/thymeleafEx/thymeleafEx04";
   }
 }
