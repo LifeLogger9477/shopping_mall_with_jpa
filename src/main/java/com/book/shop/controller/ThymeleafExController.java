@@ -58,7 +58,7 @@ public class ThymeleafExController {
     }
     return itemDtos;
   }
-  
+
   @GetMapping(value = "/ex03")
   public String thymeleafExample03(Model model) {
 
@@ -66,7 +66,7 @@ public class ThymeleafExController {
 
     model.addAttribute("itemDtos", itemDtos);
 
-    return "/thymeleafEx/thymeleafEx03";
+    return "thymeleafEx/thymeleafEx03";
   }
 
   @GetMapping(value = "/ex04")
@@ -76,7 +76,7 @@ public class ThymeleafExController {
 
     model.addAttribute("itemDtos", itemDtos);
 
-    return "/thymeleafEx/thymeleafEx04";
+    return "thymeleafEx/thymeleafEx04";
   }
 
   @GetMapping(value = "/ex05")
@@ -86,6 +86,12 @@ public class ThymeleafExController {
 
     model.addAttribute("itemDtos", itemDtos);
 
-    return "/thymeleafEx/thymeleafEx05";
+    return "thymeleafEx/thymeleafEx05";
+  }
+
+  @GetMapping(value = "/ex06")
+  public String thymeleafeExample06() {
+
+    return "thymeleafEx/thymeleafEx06"; 
   }
 }
