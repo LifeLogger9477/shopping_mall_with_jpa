@@ -2,6 +2,7 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org" 
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
   <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,11 +10,12 @@
     <!-- css only -->
     <link rel="stylesheet" 
           href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link th:href="@{/css/layout1.css}" rel="stylesheet">
     
     <!-- js, Popper.js, and jQuery -->
-    <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
-    <script src="webjars/popper.js/1.16.1/dist/umd/popper.min.js"></script>
-    <script src="webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/webjars/popper.js/1.16.1/dist/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
     
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
@@ -21,13 +23,13 @@
   
   <body>
     
-    <div th:replace="fragments/header::header"></div>
-  
-    <div layout:fragment="content">
+    <div th:replace="~{fragments/header::header}"></div>
+    
+    <div layout:fragment="content" class="content">
       
     </div>
-  
-    <div th:replace="fragments/footer::footer"></div>
+
+    <div th:replace="~{fragments/footer::footer}"></div>
   
   </body>
 </html>
