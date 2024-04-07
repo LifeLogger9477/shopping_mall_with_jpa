@@ -99,7 +99,7 @@ public class ThymeleafExController {
   @GetMapping(value = "/ex07")
   public String thymeleafExample07(
       @RequestParam("param1") String param1,
-      @RequestParam("param2") String param2, 
+      @RequestParam("param2") String param2,
       Model model
   ) {
 
@@ -120,5 +120,11 @@ public class ThymeleafExController {
     model.addAttribute("param2", param2);
 
     return "thymeleafEx/thymeleafEx08";
+  }
+
+  @GetMapping(value = "/ex09")
+  public String thymeleafExample09() {
+
+    return "thymeleafEx/thymeleafEx09";
   }
 }
